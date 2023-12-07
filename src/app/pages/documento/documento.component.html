@@ -1,0 +1,157 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt iste possimus in! Eos esse sapiente cum
+                    velit, eligendi beatae dolorum perferendis! Repellat, voluptates ratione voluptate amet accusamus
+                    cum. Ut, unde.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+        <div class="card mt-4">
+            <h5 class="card-header">Cargar documento</h5>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="file" class="form-label">Upload file / Cargar documento</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" id="file" aria-describedby="file" aria-label="Upload">
+                        <button class="btn btn-outline-primary" type="button" id="file">Cargar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <h5 class="card-header">Posiciones de firmas</h5>
+            <div class="card-body">
+                <form [formGroup]="myForm" autocomplete="off">
+                    <div class="row g-3 mt-1" formGroupName="constancia">
+                        <div class="col-md-12">
+                            <h6 class="card-subtitle text-muted">Constancia</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="x1" class="form-label">Posición X1</label>
+                            <input type="text" class="form-control" id="x1" formControlName="x1"
+                                placeholder="Posición X1">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="y1" class="form-label">Posición Y1</label>
+                            <input type="text" class="form-control" id="y1" formControlName="y1"
+                                placeholder="Posición Y1">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="x2" class="form-label">Posición X2</label>
+                            <input type="text" class="form-control" id="x2" formControlName="x2"
+                                placeholder="Posición X2">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="y2" class="form-label">Posición Y2</label>
+                            <input type="text" class="form-control" id="y2" formControlName="y2"
+                                placeholder="Posición Y2">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="x" class="form-label">Centro X</label>
+                            <input type="text" class="form-control" id="x" formControlName="x" placeholder="Centro X">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="y" class="form-label">Centro Y</label>
+                            <input type="text" class="form-control" id="y" formControlName="y" placeholder="Centro Y">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="hoja" class="form-label">Nro. hoja</label>
+                            <input type="number" class="form-control" id="hoja" formControlName="nHoja"
+                                placeholder="Nro. hoja">
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="row g-3 mt-1" formArrayName="firmas"
+                        *ngFor="let firmas of firmasArr.controls; let i = index">
+                        <div class="col-md-12">
+                            <h6 class="card-subtitle text-muted">Firmante {{ i + 1 }}</h6>
+                        </div>
+                        <div class="col-md-3" [formGroupName]="i">
+                            <label for="x1" class="form-label">Posición X1</label>
+                            <input type="text" class="form-control" id="x1" formControlName="x1"
+                                placeholder="Posición X1">
+                        </div>
+                        <div class="col-md-3" [formGroupName]="i">
+                            <label for="y1" class="form-label">Posición Y1</label>
+                            <input type="text" class="form-control" id="y1" formControlName="y1"
+                                placeholder="Posición Y1">
+                        </div>
+                        <div class="col-md-3" [formGroupName]="i">
+                            <label for="x2" class="form-label">Posición X2</label>
+                            <input type="text" class="form-control" id="x2" formControlName="x2"
+                                placeholder="Posición X2">
+                        </div>
+                        <div class="col-md-3" [formGroupName]="i">
+                            <label for="y2" class="form-label">Posición Y2</label>
+                            <input type="text" class="form-control" id="y2" formControlName="y2"
+                                placeholder="Posición Y2">
+                        </div>
+                        <div class="col-md-3" [formGroupName]="i">
+                            <label for="x" class="form-label">Centro X</label>
+                            <input type="text" class="form-control" id="x" formControlName="x" placeholder="Centro X">
+                        </div>
+                        <div class="col-md-3" [formGroupName]="i">
+                            <label for="y" class="form-label">Centro Y</label>
+                            <input type="text" class="form-control" id="y" formControlName="y" placeholder="Centro Y">
+                        </div>
+                        <div class="col-md-3" [formGroupName]="i">
+                            <label for="hoja" class="form-label">Nro. hoja</label>
+                            <input type="number" class="form-control" id="hoja" formControlName="nHoja"
+                                placeholder="Nro. hoja">
+                        </div>
+                        <div class="col-md-3" [formGroupName]="i">
+                            <label class="form-label"></label>
+                            <div class="d-grid mt-2">
+                                <button class="btn btn-outline-danger" type="button"
+                                    (click)="deleteFirma(i)">Eliminar</button>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto mt-5">
+                        <button class="btn btn-outline-success" type="button" (click)="addFirma()">Agregar
+                            firmante</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col col-md-6">
+        <div class="card mt-4">
+            <h5 class="card-header">Documento</h5>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="nombre" class="form-label">Nombre del documento</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre del documento">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dias" class="form-label">Tiempo max. para firmar</label>
+                        <select class="form-select" aria-label="dias">
+                            <option selected>Seleccionar</option>
+                            <option value="1">1 día</option>
+                            <option value="2">2 días</option>
+                            <option value="3">3 días</option>
+                        </select>
+                    </div>
+                </div>
+                <object class="mt-4"
+                    data="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf" width="100%"
+                    height="800px">
+                </object>
+                <div class="row">
+                    <div class="d-grid gap-2 col-6 mx-auto mt-5">
+                        <button class="btn btn-outline-primary" type="button">Guardar documento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
